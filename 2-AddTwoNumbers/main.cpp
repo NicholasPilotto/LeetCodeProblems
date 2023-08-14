@@ -20,46 +20,62 @@ struct ListNode {
     next(next) {}
 };
 
+void printList(ListNode* l) {
+  while (l) {
+    cout << l->val;
+    l = l->next;
+  }
+}
+
 class Solution {
  public:
   ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-    int sum = 0;
-    int remainder = 0;
-    ListNode* tmpResult = new ListNode();
-    ListNode* result = tmpResult;
-    while (l1) {
-      sum = l1->val + l2->val + remainder;
+    int sum          = 0;
+    int remainder    = 0;
+    ListNode* result = nullptr;
+
+    do {
+      if (l1 && l2) {
+        sum = l1->val + l2->val + remainder;
+        l1  = l1->next;
+        l2  = l2->next;
+      } else if (l1) {
+        sum = l1->val + remainder;
+        l1  = l1->next;
+      } else if (l2) {
+        sum = l2->val + remainder;
+        l2  = l2->next;
+      }
       remainder = 0;
 
       if (sum >= 10) {
         remainder = 1;
         sum -= 10;
       }
-
-      tmpResult->val = sum;
-      tmpResult = tmpResult->next;
-      tmpResult = new ListNode();
-
-      l1 = l1->next;
-      l2 = l2->next;
-    }
+      insertAtEnd(sum, result);
+    } while (l1 || l2);
 
     if (remainder != 0) {
-      tmpResult = new ListNode(remainder);
+      insertAtEnd(1, result);
       remainder = 0;
-      tmpResult = tmpResult->next;
     }
 
     return result;
   }
-};
 
-void printList(ListNode* l) {
-  while(l) {
-    cout << l->val;
-    l = l->next;
+  void insertAtEnd(int data, ListNode*& head) {
+    ListNode* newNode = new ListNode(data);
+    if (head == nullptr) {
+      head = newNode;
+      return;
+    }
+    ListNode* temp = head;
+    while (temp->next != nullptr) {
+      temp = temp->next;
+    }
+    temp->next = newNode;
   }
-}
+};
 
 int main() {
   ListNode* l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
@@ -67,8 +83,6 @@ int main() {
   Solution s;
 
   ListNode* result = s.addTwoNumbers(l1, l2);
-
-  cout << result << " " << l2 << "\n";
 
   printList(result);
 
