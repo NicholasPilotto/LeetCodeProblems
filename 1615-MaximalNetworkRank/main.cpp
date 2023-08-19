@@ -24,7 +24,7 @@ class Solution {
       }
       second_max_degree = degree;
       if (second_max_degree > max_degree) {
-        swap(second_max_degree, max_degree);
+        std::swap(second_max_degree, max_degree);
       }
     }
 
