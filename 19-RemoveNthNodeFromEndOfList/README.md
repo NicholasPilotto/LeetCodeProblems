@@ -32,3 +32,9 @@ The number of nodes in the list is sz.
 - ```1 <= sz <= 30```
 - ```0 <= Node.val <= 100```
 - ```1 <= n <= sz```
+
+## Solution
+
+| Runtime | Memory |
+| ---: | ---: |
+| 0ms | 13.3MB |
