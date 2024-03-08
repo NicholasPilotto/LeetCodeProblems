@@ -6,10 +6,10 @@ using std::cout;
 
 class Solution {
  public:
-  static double myPow(double x, long long n) { return pow(x, n); }
+  static double myPow(double x, int64_t n) { return pow(x, n); }
 
  private:
-  static double pow(double x, long long n) {
+  static double pow(double x, int64_t n) {
 
     if (n == 0) {
       return 1;
@@ -20,19 +20,19 @@ class Solution {
       n = std::abs(n);
     }
 
-    double splittedProblem = pow(x, n / 2);
+    double splitted_problem = pow(x, n / 2);
 
     if (n % 2 == 0) {
-      return splittedProblem * splittedProblem;
+      return splitted_problem * splitted_problem;
     }
 
-    return x * splittedProblem * splittedProblem;
+    return x * splitted_problem * splitted_problem;
   }
 };
 
 int main() {
   double x;
-  long long n;
+  int16_t n;
 
   cout << "Insert x number: ";
   cin >> x;
