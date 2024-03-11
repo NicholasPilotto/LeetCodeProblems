@@ -69,3 +69,5 @@ Temporary Items
 .history/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#C++,macOS,VisualStudioCode
+
+.vscode/
